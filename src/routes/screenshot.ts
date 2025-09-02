@@ -1,9 +1,9 @@
-import express from 'express';
+import express, { Router } from 'express';
 import { captureAndUpload } from '../services/screenshotService';
 import { checkBucketAccess } from '../utils/s3';
 import config from '../config';
 
-const router = express.Router();
+const router: Router = express.Router();
 
 /**
  * POST /screenshot
@@ -48,7 +48,7 @@ router.post('/', async (req, res) => {
 
     console.log('Screenshot capture completed successfully');
 
-    res.json({
+    return res.json({
       success: true,
       screenshots: results,
       metadata: {
@@ -62,7 +62,7 @@ router.post('/', async (req, res) => {
   } catch (error) {
     console.error('Error capturing screenshots:', error);
 
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: 'Failed to capture screenshots',
       details: error instanceof Error ? error.message : 'Unknown error'
@@ -87,7 +87,7 @@ router.get('/health', async (_, res) => {
     if (config.aws.s3BucketName) {
       try {
         checks.s3Access = await checkBucketAccess(config.aws.s3BucketName);
-      } catch (error) {
+      } catch (error: any) {
         checks.s3Access = false;
         checks.s3Error = error.message;
       }
@@ -103,7 +103,7 @@ router.get('/health', async (_, res) => {
       checks,
       timestamp: new Date().toISOString()
     });
-  } catch (error) {
+  } catch (error: any) {
     res.status(503).json({
       success: false,
       status: 'unhealthy',

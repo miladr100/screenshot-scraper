@@ -7,9 +7,7 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
-    "install-browsers": "npx playwright install chromium",
-    "setup-s3": "ts-node scripts/setup-s3.ts",
-    "test-api": "ts-node examples/test-api.ts"
+    "install-browsers": "npx playwright install chromium"
   },
   "keywords": ["scraping", "screenshot", "playwright", "api", "typescript"],
   "author": "",

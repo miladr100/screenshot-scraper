@@ -380,7 +380,7 @@ async function captureScreenshot(
         }
 
         // Navigate to target URL
-        await page.goto(url, { waitUntil: strategy, timeout });
+        await page.goto(url, { waitUntil: strategy as any, timeout });
 
         // Enhanced handling for Braip URLs
         if (isEnhanced) {

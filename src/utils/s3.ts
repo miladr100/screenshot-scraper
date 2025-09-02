@@ -70,7 +70,7 @@ async function checkBucketAccess(bucketName: string): Promise<boolean> {
     await s3.headBucket({ Bucket: bucketName }).promise();
     console.log(`✅ Bucket ${bucketName} is accessible`);
     return true;
-  } catch (error) {   
+  } catch (error: any) {   
     console.error(`❌ Error accessing bucket ${bucketName}:`, error.message);
     return false;
   }

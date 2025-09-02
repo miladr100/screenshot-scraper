@@ -104,3 +104,7 @@ Thumbs.db
 # Temporary files
 tmp/
 temp/
+
+# Dist
+dist/
+.vscode/
