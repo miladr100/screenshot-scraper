@@ -11,7 +11,6 @@ Uma API Node.js robusta para capturar screenshots de páginas web com suporte a 
 - 🚀 **Rate Limiting**: Controle de requisições
 - 🔒 **Autenticação**: Sistema de API keys
 - 📊 **Health Checks**: Monitoramento de saúde da API
-- 🎯 **Validação**: Validação robusta de entrada
 
 ## 🚀 Instalação
 
@@ -81,8 +80,8 @@ x-api-key: demo-key (opcional em desenvolvimento)
 {
   "url": "https://exemplo.com",
   "productId": "produto123",
+  "userId": "user1231"
   "type": "both",
-  "forceRefresh": false
 }
 ```
 
@@ -91,9 +90,10 @@ x-api-key: demo-key (opcional em desenvolvimento)
 | Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|-------------|-----------|
 | `url` | string | ✅ | URL para capturar screenshot |
-| `productId` | string | ❌ | ID do produto (para organização) |
+| `productId` | string | ✅ | ID do produto (para organização da url final) |
+| `userId` | string | ✅ | ID do usuário (para organização da url final) |
 | `type` | string | ❌ | Tipo: `desktop`, `mobile` ou `both` (padrão) |
-| `forceRefresh` | boolean | ❌ | Força nova captura (padrão: false) |
+
 
 #### Resposta de Sucesso
 ```json
@@ -159,7 +159,6 @@ A API usa múltiplas estratégias para garantir capturas bem-sucedidas:
 ```
 src/
 ├── config/           # Configurações
-├── middleware/       # Middlewares (auth, validation)
 ├── routes/          # Rotas da API
 ├── services/        # Serviços (screenshot, cache)
 ├── utils/           # Utilitários (S3, cache)
@@ -218,7 +217,6 @@ CMD ["npm", "start"]
 
 ## 🔒 Segurança
 
-- ✅ Validação de entrada com Joi
 - ✅ Rate limiting
 - ✅ Headers de segurança com Helmet
 - ✅ CORS configurável
@@ -269,8 +267,6 @@ MIT License - veja o arquivo LICENSE para detalhes.
 3. Commit suas mudanças
 4. Push para a branch
 5. Abra um Pull Request
-
-## 📞 Suporte
 
 Para suporte, abra uma issue no repositório ou entre em contato.
 
