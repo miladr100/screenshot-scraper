@@ -1,6 +1,7 @@
 import express, { Router } from 'express';
 import { captureAndUpload } from '../services/screenshotService';
 import { checkBucketAccess } from '../utils/s3';
+import { authenticate } from '../middleware/auth';
 import config from '../config';
 
 const router: Router = express.Router();
@@ -9,7 +10,7 @@ const router: Router = express.Router();
  * POST /screenshot
  * Capture screenshots of a URL 
  */
-router.post('/', async (req, res) => {
+router.post('/', authenticate, async (req, res) => {
   try {
     const { url, productId, userId, type = 'both' } = req.body;
 

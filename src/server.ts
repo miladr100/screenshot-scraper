@@ -68,10 +68,6 @@ app.get('/', (_, res) => {
       screenshot: '/api/screenshot',
       screenshotHealth: '/api/screenshot/health'
     },
-    documentation: {
-      postman: '/api/docs/postman',
-      swagger: '/api/docs/swagger'
-    }
   });
 });
 
